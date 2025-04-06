@@ -7,7 +7,7 @@ const HeroSection = () => {
 
   useEffect(() => {
     // Default to a placeholder image if the profile image isn't available
-    setProfileImage('https://via.placeholder.com/400x400');
+    setProfileImage('images/IMG_20240316_082732.png');
   }, []);
 
   return (
