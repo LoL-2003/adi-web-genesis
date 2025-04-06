@@ -19,42 +19,42 @@ const ProjectsSection = () => {
       id: 1,
       title: "Multi functional robo",
       category: ['arduino', 'electronics'],
-      image: "https://via.placeholder.com/400x300",
+      image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80",
       description: "College project"
     },
     {
       id: 2,
       title: "Weather Station",
       category: ['arduino', 'python'],
-      image: "https://via.placeholder.com/400x300",
+      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80",
       description: "IoT project"
     },
     {
       id: 3,
       title: "Portfolio Website",
       category: ['html'],
-      image: "https://via.placeholder.com/400x300",
+      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=800&q=80",
       description: "Personal project"
     },
     {
       id: 4,
       title: "Data Analysis Tool",
       category: ['python'],
-      image: "https://via.placeholder.com/400x300",
+      image: "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=800&q=80",
       description: "Academic project"
     },
     {
       id: 5,
       title: "Smart Home System",
       category: ['arduino', 'electronics'],
-      image: "https://via.placeholder.com/400x300",
+      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80",
       description: "IoT project"
     },
     {
       id: 6,
       title: "Machine Learning Model",
       category: ['python'],
-      image: "https://via.placeholder.com/400x300",
+      image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=800&q=80",
       description: "Research project"
     }
   ];
@@ -141,6 +141,10 @@ const ProjectsSection = () => {
                 src={project.image} 
                 alt={project.title}
                 className="w-full h-48 object-cover"
+                onError={(e) => {
+                  console.error(`Image failed to load: ${project.image}`);
+                  e.currentTarget.src = 'https://via.placeholder.com/400x300';
+                }}
               />
               <div className="p-6">
                 <h4 className="text-xl font-semibold text-white mb-2">{project.title}</h4>
