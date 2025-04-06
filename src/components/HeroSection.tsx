@@ -6,8 +6,8 @@ const HeroSection = () => {
   const [profileImage, setProfileImage] = useState<string | null>(null);
 
   useEffect(() => {
-    // Default to a placeholder image if the profile image isn't available
-    setProfileImage('images/IMG_20240316_082732.png');
+    // Use the uploaded image for the profile
+    setProfileImage('public/lovable-uploads/42af6808-440f-4010-82b8-00bcdd3d1524.png');
   }, []);
 
   return (
