@@ -1,13 +1,14 @@
 
 import { useEffect, useState } from 'react';
 import { Github, Instagram, Linkedin, Twitter } from 'lucide-react';
+import { Avatar, AvatarImage, AvatarFallback } from './ui/avatar';
 
 const HeroSection = () => {
   const [profileImage, setProfileImage] = useState<string | null>(null);
 
   useEffect(() => {
     // Use the uploaded image for the profile
-    setProfileImage('public/lovable-uploads/42af6808-440f-4010-82b8-00bcdd3d1524.png');
+    setProfileImage('/lovable-uploads/42af6808-440f-4010-82b8-00bcdd3d1524.png');
   }, []);
 
   return (
@@ -15,11 +16,21 @@ const HeroSection = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-between gap-10">
           <div className="flex-shrink-0 w-full md:w-auto">
-            <img 
-              src={profileImage || 'https://via.placeholder.com/400x400'} 
-              alt="Aditya Puri"
-              className="w-64 h-64 md:w-72 md:h-72 rounded-xl object-cover mx-auto md:mx-0"
-            />
+            {profileImage ? (
+              <img 
+                src={profileImage} 
+                alt="Aditya Puri"
+                className="w-64 h-64 md:w-72 md:h-72 rounded-xl object-cover mx-auto md:mx-0"
+                onError={(e) => {
+                  console.error("Image failed to load:", e);
+                  e.currentTarget.src = 'https://via.placeholder.com/400x400';
+                }}
+              />
+            ) : (
+              <Avatar className="w-64 h-64 md:w-72 md:h-72 rounded-xl mx-auto md:mx-0">
+                <AvatarFallback>AP</AvatarFallback>
+              </Avatar>
+            )}
           </div>
           
           <div className="text-center md:text-left">
