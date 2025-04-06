@@ -5,6 +5,7 @@ import { Avatar, AvatarImage, AvatarFallback } from './ui/avatar';
 
 const HeroSection = () => {
   const [profileImage, setProfileImage] = useState<string | null>(null);
+  const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
     // Use the Google Drive image URL for the profile
@@ -16,20 +17,20 @@ const HeroSection = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-between gap-10">
           <div className="flex-shrink-0 w-full md:w-auto">
-            {profileImage ? (
+            {imageError ? (
+              <Avatar className="w-64 h-64 md:w-72 md:h-72 rounded-xl mx-auto md:mx-0">
+                <AvatarFallback>AP</AvatarFallback>
+              </Avatar>
+            ) : (
               <img 
-                src={profileImage} 
+                src={profileImage || 'https://via.placeholder.com/400x400'} 
                 alt="Aditya Puri"
                 className="w-64 h-64 md:w-72 md:h-72 rounded-xl object-cover mx-auto md:mx-0"
                 onError={(e) => {
                   console.error("Image failed to load:", e);
-                  e.currentTarget.src = 'https://via.placeholder.com/400x400';
+                  setImageError(true);
                 }}
               />
-            ) : (
-              <Avatar className="w-64 h-64 md:w-72 md:h-72 rounded-xl mx-auto md:mx-0">
-                <AvatarFallback>AP</AvatarFallback>
-              </Avatar>
             )}
           </div>
           
